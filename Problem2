@@ -27,7 +27,19 @@ public class MyTimerTask extends TimerTask {
         Timer timer1=new Timer();
 		timer1.scheduleAtFixedRate(timerTask, 0, 10*8640000);
         System.out.println("TimerTask filloi");
-        
+	//Nqs do te na duhet qe ta ndalojm ,pra mos te jete gjithmone i vazhdueshem programi aplikojm kodin si me poshte
+         */try {
+            Thread.sleep(40000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        timer1.cancel();
+        System.out.println("TimerTask anullohet");
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }*/
     }
 
 }
