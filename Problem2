@@ -1,0 +1,33 @@
+package task;
+
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class MyTimerTask extends TimerTask {
+
+    @Override
+    public void run() {
+        System.out.println("Timertask fillon ne:"+new Date());
+        completeTask();
+        System.out.println("Timertask mbaron ne:"+new Date());
+    }
+
+    private void completeTask() {
+        try { 
+            Thread.sleep(3600000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static void main(String args[]){
+        TimerTask timerTask = new MyTimerTask();
+        Timer timer = new Timer(true);
+        Timer timer1=new Timer();
+		timer1.scheduleAtFixedRate(timerTask, 0, 10*8640000);
+        System.out.println("TimerTask filloi");
+        
+    }
+
+}
