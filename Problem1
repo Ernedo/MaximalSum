@@ -1,54 +1,38 @@
-using System;
-using System.Collections.Generic;
+public static void main(String[] args) {
+ String haystack = "vnk2435kvabco8awkh125kjneytbcd12qjhb4acd123xmnbqwnw4t";
+ String needle = "“abcd1234";
+ char [] needl = needle.toCharArray();
+ int needleLen = needle.length();
+ int found=0;
+ char hay[] = haystack.toCharArray();
+ int index =0;
+ int chMatched =0;
 
-static class ByteArrayRocks {
+ for (int i=0; i<hay.length; i++){
 
-    static readonly int [] Empty = new int [0];
+  if (index >= needleLen || chMatched==0)
+   index=0;
+  System.out.print("\nchar-->"+hay[i] + ", with->"+needl[index]);
 
-    public static int [] Locate (this byte [] self, byte [] candidate)
-    {
-        if (IsEmptyLocate (self, candidate))
-            return Empty;
+  if(hay[i] == needl[index]){
+   chMatched++;
+   System.out.println(", matched");
+  }else {
+   chMatched=0;
+   index=0;
+   if(hay[i] == needl[index]){
+    chMatched++;
+    System.out.print("\nchar->"+hay[i] + ", with->"+needl[index]);
+    System.out.print(", matched");
+   }else
+   continue;
+  }
 
-        var list = new List<int> ();
-
-        for (int i = 0; i < self.Length; i++) {
-            if (!IsMatch (self, i, candidate))
-                continue;
-
-            list.Add (i);
-        }
-
-        return list.Count == 0 ? Empty : list.ToArray ();
-    }
-
-    static bool IsMatch (byte [] array, int position, byte [] candidate)
-    {
-        if (candidate.Length > (array.Length - position))
-            return false;
-
-        for (int i = 0; i < candidate.Length; i++)
-            if (array [position + i] != candidate [i])
-                return false;
-
-        return true;
-    }
-
-    static bool IsEmptyLocate (byte [] array, byte [] candidate)
-    {
-        return array == null
-            || candidate == null
-            || array.Length == 0
-            || candidate.Length == 0
-            || candidate.Length > array.Length;
-    }
-
-    static void Main ()
-    {
-        var data = new byte [] { vnk2435kvabco8awkh125kjneytbcd12qjhb4acd123xmnbqwnw4t };
-        var pattern = new byte [] { “abcd1234};
-
-        foreach (var position in data.Locate (pattern))
-            Console.WriteLine (position);
-    }
-}
+  if(chMatched == needleLen){
+   found++;
+   System.out.println("found. Total :"+found);
+  }
+  index++;
+ } 
+ System.out.println("Rezultati: "+found);
+ }
